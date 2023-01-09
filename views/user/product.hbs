@@ -1,0 +1,93 @@
+<!-- products Details Section -->
+  <section id="prodetails" class="section-p1">
+    
+    <!-- Single Image  -->
+    <div class="single-pro-image">
+      <img src="./product-images/{{product._id}}.png" alt="" id="mainImg">
+      {{!-- <div class="small-img-group">
+        <div class="small-img-col">
+          <img src="./product-images/{{product._id}}.png" alt="" class="small-img">
+        </div>
+        <div class="small-img-col">
+          <img src="./product-images/{{product._id}}.png" alt="" class="small-img">
+        </div>
+        <div class="small-img-col">
+          <img src="./product-images/{{product._id}}.png" alt="" class="small-img">
+        </div>
+        <div class="small-img-col">
+          <img src="./product-images/{{product._id}}.png" alt="" class="small-img">
+        </div>
+      </div> --}}
+    </div>
+
+    <!-- Product Details -->
+    <div class="single-pro-details">
+      <h6>{{product.company}}</h6>
+      <h4>{{product.name}}</h4>
+      <h2>${{product.cPrice}}</h2>
+      {{!-- <select>
+        <option selected>Select Size</option>
+        <option>XXL</option>
+        <option >XL</option>
+        <option>Large</option>
+        <option>Meduim</option>
+        <option>Small</option>
+      </select> --}}
+      {{!-- <input type="number" value="1" min="1"> --}}
+      <button class="normal">Add To Cart</button>
+      <h4>Product Details</h4>
+      <span>
+        <ul>
+          <li>Commodity : {{product.commodity}} Watches</li>
+          <li>Made of : {{product.material}}</li>
+          <li>Width : {{product.dWidth}} mm</li>
+          <li>Height : {{product.dHeight}} mm</li>
+          <li>Clean the dial with a cotton cloth</li>
+          <li>Package contains : 1 wrist watch</li>
+          <li>Water-resistant</li>
+          <li>2-years warranty on the movement and 12 months warranty on the battery from the date of purchase.</li>
+        </ul>
+      </span>
+    </div>
+
+  </section>
+
+  <!-- Featured Products Section -->
+  <section id="product1" class="section-p1">
+      <h2>More Products</h2>
+      <p>New Summer Collection Arrivals</p>
+      <div class="pro-container">
+        {{#each products}}
+         <div class="pro">
+            <a href="/product?productId={{this._id}}">
+                <img src="./product-images/{{this._id}}.png" alt="">
+                <div class="des">
+                    <span>{{this.company}}</span>
+                    <h5>{{this.name}}</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>{{this.cPrice}}</h4>
+                </div>
+            </a>
+            <a href=""><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        {{/each}}
+      </div>
+  </section>
+
+  <!-- NewSletter Section -->
+  <section id="newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+      <h4>Sign Up For Newsletters</h4>
+      <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+    <div class="form">
+      <input type="email" name="email" placeholder="Your email address" autocomplete="email">
+      <button class="normal">Sign Up</button>
+    </div>
+  </section>

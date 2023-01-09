@@ -1,0 +1,35 @@
+<section class="add-product">
+    <div class="container add-product-container">
+        <h2>Edit Product</h2>
+        <form class="add-product-form" id="submit-form" action="/add-product" method="post"
+            enctype="multipart/form-data">
+            <div class="form-name">
+                <input type="text" name="name" placeholder="Name" required value="{{product.name}}">
+                <input type="text" name="company" placeholder="Company Name" required value="{{product.company}}">
+            </div>
+            <div class="form-name">
+                <input type="number" name="cPrice" placeholder="Current Price" required  value="{{product.cPrice}}">
+                <input type="number" name="mPrice" placeholder="Max Price" required  value="{{product.mPrice}}">
+            </div>
+            <div class="form-name">
+                <input type="text" name="material" placeholder="Material" required  value="{{product.material}}">
+                <input type="text" name="commodity" placeholder="commodity" required  value="{{product.commodity}}">
+            </div>
+            <div class="form-name">
+                <input type="number" name="dHeight" placeholder="Dial Height" step=".01" required  value="{{product.dHeight}}">
+                <input type="number" name="dWidth" placeholder="Dial Width" step=".01" required  value="{{product.dWidth}}">
+                <input type="text" name="productId" placeholder="Address" value="{{product._id}}" required hidden >
+            </div>
+
+            
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    function viewimage(event){
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

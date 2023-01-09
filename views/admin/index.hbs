@@ -1,0 +1,100 @@
+<section id="cart" class="users">
+  <div class="container">
+    <div class="aside">
+      <div class="top">
+        <div class="logo">
+          <img src="./images/logo.png" alt="">
+        </div>
+      </div>
+      <div class="sidebar">
+        <a href="/admin">
+          <i class="fa-solid fa-house"></i>
+          <span>Users</span>
+        </a>
+        <a href="/products">
+          <i class="fa-solid fa-house"></i>
+          <span>Products</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Orders</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Categories</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Blogs</span>
+        </a>
+        <a href="/logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+    <div class="right">
+      
+      <div class="right-container">
+        <h2 >Users</h2>
+        <div class="search">
+          <div class="input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="userSearchInput">
+          </div>
+          <a class="search-btn user-search">Search</a>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <td>Remove</td>
+              <td></td>
+              <td>First Name</td>
+              <td>Last Name</td>
+              <td>Email</td>
+              <td>Edit</td>
+              <td>Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each users}}
+            <tr>
+              <td><a href="/delete-user?id={{this._id}}" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-circle-minus"></i></a></td>
+              <td>
+                {{#if this.profileImage}}
+                <img src="./images/user-images/{{this._id}}.png" alt=""
+                  style="width: 4rem;height: 4rem;border-radius:  50%;cursor:pointer;" id="userImgView">
+                {{else}}
+                <img src="./images/people/dummy.png" alt=""
+                  style="width: 4rem;height: 4rem;border-radius:  50%;cursor:pointer;" id="userImgView">
+                {{/if}}
+              </td>
+              <td>{{this.firstName}}</td>
+              <td>{{this.lastName}}</td>
+              <td>{{this.email}}</td>
+              <td><a href="/edit-user?id={{this._id}}"><i class="fa-solid fa-pen"
+                    style="color: rgb(255, 89, 0);font-size: 18px;"></i></a>
+              </td>
+              <td>
+                <div class="status" style="width: 2rem;height:0.5rem;border-radius:1rem; background-color:rgba(0, 128, 0, 0.491);margin: 0 auto;"></div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  let userSearchBtn = document.querySelector(".user-search")
+  let userSearchInput = document.querySelector("input#userSearchInput")
+
+  userSearchBtn.addEventListener("click", () => {
+     let searchText = userSearchInput.value
+     userSearchBtn.href = `/user-search?text=${searchText}`
+  })
+</script>

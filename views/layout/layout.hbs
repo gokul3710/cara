@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import font awesome Liberary -->
+  <!-- <link rel="stylesheet" href="all.css"> -->
+
+  <script src="https://kit.fontawesome.com/5ef60b71ad.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <title>E-Commerce Website</title>
+</head>
+<body>
+  <!-- Header Section -->
+  {{>header}}
+  {{{body}}}
+  {{#if admin}}
+  {{else}}
+  {{>footer}}
+
+  {{/if}}
+  <script src="./javascripts/script.js"></script>
+</body>
+</html>

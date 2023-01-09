@@ -1,0 +1,70 @@
+  <!-- Hero Page -->
+  <section id="page-header" class="about-header cart">
+    <h2>#Cart</h2>
+    <p>Add Your Coupon Code & Save Up to 70% !</p>
+  </section>
+
+  <!-- Products In Cart Table Section -->
+  <section id="cart" class="section-p1">
+    <table>
+      <thead>
+        <tr>
+          <td>Remove</td>
+          <td>Image</td>
+          <td>Product</td>
+          <td>Price</td>
+          <td>Quantity</td>
+          <td>Subtotal</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <td><a href="#"><i class="fa-solid fa-circle-minus"></i></a></td>
+          <td><img src="./product-images/{{this.item}}.png" alt=""></td>
+          <td><h5>{{this.product.company}} {{this.product.name}}</h5></td>
+          <td>{{this.product.cPrice}}</td>
+          <td>
+            <a>
+              <i class="fa-solid fa-circle-minus"></i>
+            </a>
+            <input type="number" name="" id="" value="1" min="1" style="border: none;text-align:center;">
+            <a href="">
+              <i class="fa-solid fa-circle-plus"></i>
+            </a>
+          </td>
+          <td>{{this.product.cPrice}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Cart Add Section -->
+  {{!-- <section id="cart-add" class="section-p1">
+    <div id="coupon">
+      <h3>Apply Coupon</h3>
+      <div>
+        <input type="text" placeholder="Enter Your Coupon">
+        <button class="normal">Apply</button>
+      </div>
+    </div>
+    <div id="subtotal">
+      <h3>Cart Totals</h3>
+      <table>
+        <tr>
+          <td>Cart Subtotal</td>
+          <td>$418</td>
+        </tr>
+        <tr>
+          <td>Shipping</td>
+          <td>Free</td>
+        </tr>
+        <tr>
+          <td><strong>Total<strong></td>
+          <td><strong>$418</strong></td>
+        </tr>
+      </table>
+      <button class="normal">Proceed To Checkout</button>
+    </div>
+  </section> --}}

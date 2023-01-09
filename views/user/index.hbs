@@ -1,0 +1,242 @@
+<!-- Hero Page Style -->
+<section id="hero">
+    <h4>Trade-in-offer</h4>
+    <h2>Super value deals</h2>
+    <h1>On all products</h1>
+    <p>Save more with coupons & up to 70% off!</p>
+    <a href="shop.html"><button>Shop Now</button></a>
+</section>
+
+<!-- Feature boxes -->
+<section id="feature" class="section-p1">
+    <div class="fe-box">
+        <img src="./images/features/f1.png" alt="First Feature Image">
+        <h6>Free Shipping</h6>
+    </div>
+    <div class="fe-box">
+        <img src="./images/features/f2.png" alt="First Feature Image">
+        <h6>Online Order</h6>
+    </div>
+    <div class="fe-box">
+        <img src="./images/features/f3.png" alt="First Feature Image">
+        <h6>Save Money</h6>
+    </div>
+    <div class="fe-box">
+        <img src="./images/features/f4.png" alt="First Feature Image">
+        <h6>Promotions</h6>
+    </div>
+    <div class="fe-box">
+        <img src="./images/features/f5.png" alt="First Feature Image">
+        <h6>Happy Sell</h6>
+    </div>
+    <div class="fe-box">
+        <img src="./images/features/f6.png" alt="First Feature Image">
+        <h6>F24/7 Support</h6>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="product1" class="section-p1">
+    <h2>Featured Products</h2>
+    <p>Summer Collection New Modern Designs</p>
+    <div class="pro-container">
+        {{#each products}}
+        <div class="pro">
+            <a href="/product?productId={{this._id}}">
+                <img src="./product-images/{{this._id}}.png" alt="">
+                <div class="des">
+                    <span>{{this.company}}</span>
+                    <h5>{{this.name}}</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>{{this.cPrice}}</h4>
+                </div>
+            </a>
+            <a href="/add-to-cart?productId={{this._id}}"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+<!-- Banner Section -->
+<section id="banner" class="section-m1">
+    <h4>Repair Services</h4>
+    <h2>Up to <span>70% Off</span>-All T-Shirts & Accessories</h2>
+    <a href="shop.html"><button class="normal">Explore More</button></a>
+</section>
+
+<!-- New Arrivals Section -->
+<section id="product1" class="section-p1">
+    <h2>New Arrivals</h2>
+    <p>New Summer Collection Arrivals</p>
+    <div class="pro-container">
+        <div class="pro">
+            <img src="./images/products/n1.jpg" alt="">
+            <div class="des">
+                <span>Zara</span>
+                <h5>Basic Light-blue Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$76</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n2.jpg" alt="">
+            <div class="des">
+                <span>H&M</span>
+                <h5>Caroo Nice Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$76</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n3.jpg" alt="">
+            <div class="des">
+                <span>Zara</span>
+                <h5>Snow White Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$90</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n4.jpg" alt="">
+            <div class="des">
+                <span>Zain</span>
+                <h5>Battern Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$50</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n5.jpg" alt="">
+            <div class="des">
+                <span>Zara</span>
+                <h5>Jeans Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$119</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n6.jpg" alt="">
+            <div class="des">
+                <span>Alien</span>
+                <h5>Sweet Jeans Short</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$89</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n7.jpg" alt="">
+            <div class="des">
+                <span>Zara</span>
+                <h5>Beige Jacket</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$130</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+        <div class="pro">
+            <img src="./images/products/n8.jpg" alt="">
+            <div class="des">
+                <span>Polo</span>
+                <h5>Basic Black Shirt</h5>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>$96</h4>
+            </div>
+            <a href="#"><i class="fa-solid fa-cart-plus cart"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Sales Section Banners -->
+<!-- <section id="sm-banner" class="section-p1">
+    <div class="banner-box">
+      <h4>Crazy Deals</h4>
+      <h2>Buy 1 get 2 Free</h2>
+      <span>The best Classic dress is on sala at Cara</span>
+      <button class="white">Sale Info</button>
+    </div>
+    <div class="banner-box">
+      <h4>Spring / Summer</h4>
+      <h2>Upcoming Season</h2>
+      <span>The best Classic dress collections is on sala at Cara</span>
+      <button class="white">Collection</button>
+    </div>
+  </section> -->
+
+<!-- Last three banners Section -->
+<!-- <section id="banner3">
+    <div class="banner-box">
+      <h2>Seasonal Sale</h2>
+      <h3>Winter Collection -50% Off</h3>
+    </div>
+    <div class="banner-box">
+      <h2>New FootWare Collection</h2>
+      <h3>Spring / Summer 2022</h3>
+    </div>
+    <div class="banner-box">
+      <h2>T-Shirts</h2>
+      <h3>New Trendy Prints</h3>
+    </div>
+  </section> -->
+
+<!-- NewSletter Section -->
+<section id="newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+        <h4>Sign Up For Newsletters</h4>
+        <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+    </div>
+    <div class="form">
+        <input type="email" name="email" placeholder="Your email address" autocomplete="email">
+        <button class="normal">Sign Up</button>
+    </div>
+</section>

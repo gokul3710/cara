@@ -1,0 +1,86 @@
+<section id="cart" class="products">
+  <div class="container">
+    <div class="aside" id="aside">
+      <div class="top">
+        <div class="logo">
+          <img src="./images/logo.png" alt="">
+        </div>
+      </div>
+      <div class="sidebar">
+        <a href="/admin">
+          <i class="fa-solid fa-house"></i>
+          <span>Users</span>
+        </a>
+        <a href="/products">
+          <i class="fa-solid fa-house"></i>
+          <span>Products</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Orders</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Categories</span>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-house"></i>
+          <span>Blogs</span>
+        </a>
+        <a href="/admin-logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right-container">
+        <h2>Products</h2>
+        <div class="search">
+          <div class="input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="productSearchInput">
+          </div>
+          <a class="search-btn product-search">Search</a>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <td>Remove</td>
+              <td>Company</td>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Image</td>
+              <td>Edit</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each products}}
+            <tr>
+              <td><a href="/delete-product?id={{this._id}}"><i class="fa-solid fa-circle-minus"></i></a></td>
+              <td>{{this.company}}</td>
+              <td>{{this.name}}</td>
+              <td>₹{{this.cPrice}}</td>
+              <td><img src="/product-images/{{this._id}}.png" alt="" srcset="" style="width: 4rem;height:auto:"></td>
+              <td><a href="/edit-product?id={{this._id}}"><i class="fa-solid fa-pen"
+                    style="color: rgb(255, 89, 0);font-size: 18px;"></i></a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  let productSearchBtn = document.querySelector(".product-search")
+  let productSearchInput = document.querySelector("input#productSearchInput")
+
+  productSearchBtn.addEventListener("click", () => {
+    let searchText = productSearchInput.value
+    productSearchBtn.href = `/product-search?text=${searchText}`
+  })
+</script>
