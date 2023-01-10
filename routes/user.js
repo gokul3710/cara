@@ -71,13 +71,23 @@ router.get("/logout", function (req, res, next) {
 
 
 router.get("/shop",userLogin, function (req, res, next) {
-  res.render("user/shop",{user:req.session.user});
+  productHelpers.getAllProducts().then((products)=>{
+    res.render("user/shop",{user:req.session.user,products});
+  })
 });
 
-router.get("/cart",userLogin, function (req, res, next) {
-  userHelpers.getCartProducts(req.session.user._id).then((products)=>{
-    res.render("user/cart",{user:req.session.user,products});
-  })
+router.get("/cart",userLogin,  async(req, res, next)=> {
+  if(req.session.user._id){
+    let cart = await userHelpers.getTotal(req.session.user._id)
+    userHelpers.getCartProducts(req.session.user._id).then((products)=>{
+      res.render("user/cart",{user:req.session.user,products,cart});
+    })
+  }else{
+    userHelpers.getCartProducts(req.session.user._id).then((products)=>{
+      res.render("user/cart",{user:req.session.user,products,cart});
+    })
+  }
+  
 });
 
 router.get("/blog", function (req, res, next) {
@@ -153,6 +163,12 @@ router.get('/add-to-cart',userLogin,(req,res,next)=>{
       res.redirect('/cart')
     })
   }
+})
+
+router.post('/add-coupon',(req,res,next)=>{
+  userHelpers.addCoupon(req.body.coupon,req.session.user._id).then(()=>{
+    res.redirect('/cart')
+  })
 })
 
 module.exports = router;

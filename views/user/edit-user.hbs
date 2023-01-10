@@ -37,7 +37,7 @@
                 </div>
                 <input type="text" name="userId" placeholder="" value="{{user._id}}" required hidden >
                 <button type="submit" class="btn btn-primary" >Update</button>
-                <a href="/delete-user?id={{user._id}}" class="btn btn-primary" style="background: red;" >Delete Account <i class="fa-solid fa-trash"></i></a>
+                <a href="/delete-user?id={{user._id}}" onclick="return confirm('Are you sure?')" class="btn btn-primary" style="background: red;" >Delete Account <i class="fa-solid fa-trash"></i></a>
             </div>
         </form>
     </div>

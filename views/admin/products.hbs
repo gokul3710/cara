@@ -1,3 +1,8 @@
+<section id="page-header" class="about-header cart" style="height: 10rem;backgound-position:center;bckground-style:contain;">
+    <h2>#Products</h2>
+    {{!-- <p>Add Your Coupon Code & Save Up to 70% !</p> --}}
+  </section>
+
 <section id="cart" class="products">
   <div class="container">
     <div class="aside" id="aside">
@@ -35,7 +40,6 @@
     </div>
     <div class="right">
       <div class="right-container">
-        <h2>Products</h2>
         <div class="search">
           <div class="input">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -58,7 +62,7 @@
           <tbody>
             {{#each products}}
             <tr>
-              <td><a href="/delete-product?id={{this._id}}"><i class="fa-solid fa-circle-minus"></i></a></td>
+              <td><a href="/delete-product?id={{this._id}}" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-circle-minus"></i></a></td>
               <td>{{this.company}}</td>
               <td>{{this.name}}</td>
               <td>₹{{this.cPrice}}</td>

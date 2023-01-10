@@ -75,7 +75,7 @@ module.exports = {
   },
   searchUser: (text)=>{
     return new Promise(async(resolve,reject)=>{
-      let results = db.get().collection(collections.USER_COLLECTION).find({$text: {$search : text}}).toArray()
+      let results = await db.get().collection(collections.USER_COLLECTION).find({$text: {$search : text}}).toArray()
       resolve(results)
     })
   },
@@ -154,12 +154,74 @@ module.exports = {
           $project:{
               item:1,
               quantity:1,
-              product:{$arrayElemAt:['$product',0]}
+              product:{$arrayElemAt:['$product',0]},
+          }
+        },
+        {
+          $project:{
+            item:1,
+            quantity:1,
+            product:1,
+            total:{$multiply:['$quantity',{$convert:{input:'$product.cPrice',to:'int'}}]}
           }
         }
       ]).toArray()
-      console.log(cartProducts);
+      // console.log(cartProducts);
       resolve(cartProducts)
     })
+  },
+  getTotal:(userId)=>{
+    return new Promise(async(resolve,reject)=>{
+        let total= await db.get().collection(collection.CART_COLLECTION).aggregate([
+            {
+                $match:{user:ObjectID(userId)}
+            },
+            {
+                $unwind:'$products'
+            },
+            {
+                $project:{
+                    item:'$products.item',
+                    quantity:'$products.quantity'
+                }
+            },
+            {
+                $lookup:{
+                    from:collection.PRODUCT_COLLECTION,
+                    localField:'item',
+                    foreignField:'_id',
+                    as:'product'
+                }
+            },
+            {
+                $project:{
+                    item:1,
+                    quantity:1,
+                    product:{$arrayElemAt:['$product',0]}
+                }
+            },
+            {
+                $group:{
+                    _id:null,
+                    totalPrice:{$sum:{$multiply:['$quantity',{$convert:{input:'$product.cPrice',to:'int'}}]}},
+                    totalQuantity:{$sum:{$multiply:['$quantity',1]}},
+                }
+            }
+        ]).toArray()
+        resolve(total[0])
+    })
+  },
+  addCoupon: (coupon,userId)=>{
+    console.log(coupon);
+    return new Promise((resolve,reject)=>{
+      db.get().collection(collections.CART_COLLECTION).updateOne({user:ObjectID(userId)},{
+        $set:{
+          coupon:coupon
+        }
+      }).then((response)=>{
+        resolve()
+      })
+    })
   }
+  
 };

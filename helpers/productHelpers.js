@@ -66,13 +66,6 @@ module.exports= {
     }
 
 
-
-
-
-
-
-
-
     // getCount:(a)=>{
     //     return new Promise(async(resolve,reject)=>{
     //         let details = await db.get().collection(collections.PRODUCT_COLLECTION).aggregate([

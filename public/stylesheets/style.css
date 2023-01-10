@@ -67,7 +67,7 @@ a {
   margin: 40px 0;
 }
 
-button.normal {
+.button.normal {
   border: none;
   outline: none;
   cursor: pointer;
@@ -727,7 +727,7 @@ img.small-img {
   outline: none;
 }
 
-#prodetails .single-pro-details button {
+#prodetails .single-pro-details .button {
   background-color: #088178;
   color: #fff;
 }
@@ -1359,8 +1359,8 @@ marquee {
   background-color: rgba(0, 0, 255, 0.372);
 }
 
-.sidebar a:last-child {
-}
+/* .sidebar a:last-child {
+} */
 
 /* .sidebar a:nth-child(2) >* {
   transform: translateX(-3rem);
@@ -1439,9 +1439,9 @@ table td {
     margin-bottom: 25px;
   }
 
-  #navbar li:last-of-type {
+  /* #navbar li:last-of-type {
     display: none;
-  }
+  } */
 
   #mobile {
     display: flex;
