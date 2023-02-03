@@ -1325,7 +1325,7 @@ marquee {
   top: 0;
   background-color: #e3e6f3;
   height: 100vh;
-  width: 18%;
+  width: 16%;
   /* text-align: center; */
   z-index: 1;
 }
@@ -1375,7 +1375,7 @@ marquee {
   left: 0;
 } */
 .right {
-  margin-left: 18%;
+  margin-left: 16%;
 }
 
 .right-container {
@@ -1402,6 +1402,8 @@ table td {
 .products{
   overflow: hidden;
 }
+
+
 
 
 

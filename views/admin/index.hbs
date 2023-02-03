@@ -1,12 +1,7 @@
-<section id="page-header" class="about-header cart" style="height: 10rem;backgound-position:center;bckground-style:contain;">
-    <h2>#Users</h2>
-    {{!-- <p>Add Your Coupon Code & Save Up to 70% !</p> --}}
-  </section>
-
-  <section id="cart" class="users">
+<section id="cart" class="users">
   <div class="container">
     <div class="aside">
-      <div class="top">
+      <div class="top admin">
         <div class="logo">
           <img src="./images/logo.png" alt="">
         </div>
@@ -39,7 +34,7 @@
       </div>
     </div>
     <div class="right">
-      
+
       <div class="right-container">
         <div class="search">
           <div class="input">
@@ -49,7 +44,7 @@
           <a class="search-btn user-search">Search</a>
         </div>
 
-        <table>
+        <table class="admin">
           <thead>
             <tr>
               <td>Remove</td>
@@ -64,7 +59,8 @@
           <tbody>
             {{#each users}}
             <tr>
-              <td><a href="/delete-user?id={{this._id}}" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-circle-minus"></i></a></td>
+              <td><a href="/delete-user?id={{this._id}}" onclick="return confirm('Are you sure?')"><i
+                    class="fa-solid fa-circle-minus"></i></a></td>
               <td>
                 {{#if this.profileImage}}
                 <img src="./images/user-images/{{this._id}}.png" alt=""
@@ -81,7 +77,9 @@
                     style="color: rgb(255, 89, 0);font-size: 18px;"></i></a>
               </td>
               <td>
-                <div class="status" style="width: 2rem;height:0.5rem;border-radius:1rem; background-color:rgba(0, 128, 0, 0.491);margin: 0 auto;"></div>
+                <div class="status"
+                  style="width: 2rem;height:0.5rem;border-radius:1rem; background-color:rgba(0, 128, 0, 0.491);margin: 0 auto;">
+                </div>
               </td>
             </tr>
             {{/each}}
@@ -98,7 +96,7 @@
   let userSearchInput = document.querySelector("input#userSearchInput")
 
   userSearchBtn.addEventListener("click", () => {
-     let searchText = userSearchInput.value
-     userSearchBtn.href = `/user-search?text=${searchText}`
+    let searchText = userSearchInput.value
+    userSearchBtn.href = `/user-search?text=${searchText}`
   })
 </script>
