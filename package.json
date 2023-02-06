@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start-dev": "nodemon ./bin/www",
-    "build": "npm install",
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www",
+    "build": "npm install"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

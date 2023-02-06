@@ -1409,6 +1409,8 @@ table td {
 
 
 
+
+
 /* Media Query Style */
 
 @media (max-width:799px) {
@@ -1530,6 +1532,38 @@ table td {
   .login-container {
     width: 100%;
   }
+
+  .aside{
+    display: none;
+  }
+
+  .container .right{
+    width: 100%;
+    margin: 0;
+  }
+
+
+  .right-container .search{
+    padding: 0 1rem ;
+  }
+
+  #cart table.admin{
+    margin: 2rem 0.5rem;
+  }
+
+  #cart table.admin td:nth-child(1),
+  #cart table.admin td:nth-child(3),
+  #cart table.admin td:nth-child(4),
+  #cart table.admin td:nth-child(7),
+  #cart table.admin td:nth-child(8){
+    display: none;
+  }
+
+  #cart table.admin td.name{
+    align-items: center;
+  }
+
+
 }
 
 @media (max-width:477px) {
@@ -1703,5 +1737,11 @@ table td {
   #subtotal {
     width: 100%;
     padding: 20px;
+  }
+}
+
+@media screen and (min-width:600px) {
+  #cart table.admin td.name{
+    display: none;
   }
 }
