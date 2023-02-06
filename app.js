@@ -29,7 +29,9 @@ app.use((req,res,next)=>{
   next();
 })
 app.use(fileUpload())
-app.use(cors())
+app.use(cors({
+  origin: ['cara-odz2.onrender.com']
+}))
 
 db.connect((err)=>{
   if(err) console.log("Connection Error");
