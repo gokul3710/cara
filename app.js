@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
@@ -28,6 +29,7 @@ app.use((req,res,next)=>{
   next();
 })
 app.use(fileUpload())
+app.use(cors())
 
 db.connect((err)=>{
   if(err) console.log("Connection Error");
