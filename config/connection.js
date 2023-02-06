@@ -4,7 +4,7 @@ const state = {
 }
 
 module.exports.connect = (done)=>{
-    const url = 'mongodb+srv://gokul3710:gokul3710@cara.sd3xah0.mongodb.net/test'
+    const url = 'mongodb+srv://gokul3710:gokul3710@cara.sd3xah0.mongodb.net/?retryWrites=true&w=majority'
     const dbname = 'cara'
 
     mongoClient.connect(url,(err,data)=>{
