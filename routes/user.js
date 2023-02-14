@@ -30,6 +30,39 @@ router.get("/api/product",(req, res, next) => {
   }
 });
 
+router.post("/api/user/login", function (req, res, next) {
+  console.log(req.body);
+  userHelpers.doLogin(req.body).then((response) => {
+    if (response.status) {
+      req.session.userLoggedIn = true;
+      req.session.user = response.user;
+      req.session.userLoginErr = false
+      req.session.userSignupErr = false
+      console.log(true);
+      res.status(200).json(req.session.user)
+    } else {
+      console.log(false);
+      console.log(response.loginErr);
+      res.status(401).json(response.loginErr)
+    }
+  });
+});
+
+router.post("/api/user/signup", function (req, res, next) {
+  userHelpers.doSignup(req.body).then((response) => {
+    if(response.signupErr){
+      req.session.userSignupErr = response.signupErr
+      res.status(401).json(response.signupErr)
+    }else{
+      req.session.userSignupErr = false
+      req.session.userLoginErr = false
+      res.status(200).json(true)
+    }
+  });
+});
+
+
+
 
 
 
