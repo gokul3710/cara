@@ -30,7 +30,7 @@ app.use((req,res,next)=>{
 })
 app.use(fileUpload())
 app.use(cors({
-  origin: ['http://localhost:4200', 'https://cara-odz2.onrender.com','https://cara-angular.netlify.app/']
+  origin: ['http://localhost:4200', 'https://cara-odz2.onrender.com','https://cara-angular.netlify.app']
 }))
 
 db.connect((err)=>{
