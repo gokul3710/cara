@@ -11,63 +11,6 @@ const userLogin = (req,res,next)=>{
   }
 }
 
-/* API. */
-
-router.get("/api/products",(req, res, next) => {
-  productHelpers.getAllProducts().then((products)=>{
-    res.status(200).json(products)
-  })
-});
-
-
-router.get("/api/product",(req, res, next) => {
-  if(req.query.productId){
-    productHelpers.getProduct(req.query.productId).then((product)=>{
-      productHelpers.getCategoryProducts(product.company).then((products)=>{
-        res.status(200).json([product,products])
-      })
-    })
-  }
-});
-
-router.post("/api/user/login", function (req, res, next) {
-  console.log(req.body);
-  userHelpers.doLogin(req.body).then((response) => {
-    if (response.status) {
-      req.session.userLoggedIn = true;
-      req.session.user = response.user;
-      req.session.userLoginErr = false
-      req.session.userSignupErr = false
-      console.log(true);
-      res.status(200).json(req.session.user)
-    } else {
-      console.log(false);
-      console.log(response.loginErr);
-      res.status(401).json(response.loginErr)
-    }
-  });
-});
-
-router.post("/api/user/signup", function (req, res, next) {
-  userHelpers.doSignup(req.body).then((response) => {
-    if(response.signupErr){
-      req.session.userSignupErr = response.signupErr
-      res.status(401).json(response.signupErr)
-    }else{
-      req.session.userSignupErr = false
-      req.session.userLoginErr = false
-      res.status(200).json(true)
-    }
-  });
-});
-
-
-
-
-
-
-
-
 /* GET home page. */
 router.get("/", function (req, res, next) {
   productHelpers.getAllProducts().then((products)=>{

@@ -7,6 +7,8 @@ var cors = require('cors')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+var productApiRouter = require('./api/product');
+var userApiRouter = require('./api/user');
 var hbs = require('express-handlebars')
 
 var app = express();
@@ -40,6 +42,8 @@ db.connect((err)=>{
 
 app.use('/', userRouter);
 app.use('/', adminRouter);
+app.use('/', productApiRouter);
+app.use('/', userApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
