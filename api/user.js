@@ -7,7 +7,7 @@ const productHelpers = require("../helpers/productHelpers");
 
 router.get('/api/user', (req, res, next) => {
     if (req.query.userId) {
-        userHelpers.getUser(req.query.id).then((user) => {
+        userHelpers.getUser(req.query.userId).then((user) => {
             res.status(200).json(user)
         })
     }

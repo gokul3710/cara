@@ -46,10 +46,9 @@ module.exports = {
     })
   },
   getUser: (userId)=>{
-    return new Promise ((resolve,reject)=>{
-      db.get().collection(collection.USER_COLLECTION).findOne({_id:ObjectID(userId)}).then((user)=>{
-        resolve(user)
-      })
+    return new Promise (async(resolve,reject)=>{
+      let user = await db.get().collection(collection.USER_COLLECTION).findOne({_id:ObjectID(userId)})
+      resolve(user)
     })
   },
   editUser: (user)=>{
