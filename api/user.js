@@ -5,7 +5,13 @@ const productHelpers = require("../helpers/productHelpers");
 
 /* API. */
 
-
+router.get('/api/user', (req, res, next) => {
+    if (req.query.userId) {
+        userHelpers.getUser(req.query.id).then((user) => {
+            res.status(200).json(user)
+        })
+    }
+})
 
 router.post("/api/user/login", function (req, res, next) {
     console.log(req.body);
