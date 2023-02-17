@@ -14,18 +14,14 @@ router.get('/api/user', (req, res, next) => {
 })
 
 router.post("/api/user/login", function (req, res, next) {
-    console.log(req.body);
     userHelpers.doLogin(req.body).then((response) => {
         if (response.status) {
             req.session.userLoggedIn = true;
             req.session.user = response.user;
             req.session.userLoginErr = false
             req.session.userSignupErr = false
-            console.log(true);
             res.status(200).json(req.session.user)
         } else {
-            console.log(false);
-            console.log(response.loginErr);
             res.status(401).json(response.loginErr)
         }
     });
@@ -64,7 +60,6 @@ router.get("/api/user/cart/total", async (req, res, next) => {
 
 router.get('/api/user/add-to-cart', (req, res, next) => {
     if (req.query.productId && req.query.userId) {
-        console.log(req.query);
         userHelpers.addToCart(req.query.productId, req.query.userId).then(() => {
             res.status(200).json(true)
         })

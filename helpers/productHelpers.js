@@ -3,13 +3,12 @@ var collection = require("../config/collections");
 const bcrypt = require("bcrypt");
 const collections = require("../config/collections");
 const { response } = require("express");
-const  ObjectID  = require('mongodb').ObjectID
+const  ObjectID  = require('mongodb').ObjectId
 
 module.exports= {
     addProduct: (product)=>{
         return new Promise ((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
-                console.log(data.insertedId);
                 resolve(data.insertedId)
             })
         })  

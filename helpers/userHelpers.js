@@ -3,8 +3,7 @@ var collection = require("../config/collections");
 const bcrypt = require("bcrypt");
 const { response } = require("express");
 const collections = require("../config/collections");
-const { ObjectId } = require("mongodb");
-const ObjectID = require('mongodb').ObjectID
+const ObjectID = require('mongodb').ObjectId
 
 module.exports = {
   doSignup: (userData) => {
@@ -127,7 +126,6 @@ module.exports = {
     })
   },
   getCartProducts: (userId) => {
-    console.log(userId);
     return new Promise(async (resolve, reject) => {
       let cartProducts = await db.get().collection(collections.CART_COLLECTION).aggregate([
         {
@@ -166,7 +164,6 @@ module.exports = {
           }
         }
       ]).toArray()
-      // console.log(cartProducts);
       resolve(cartProducts)
     })
   },
@@ -212,7 +209,6 @@ module.exports = {
     })
   },
   addCoupon: (coupon, userId) => {
-    console.log(coupon);
     return new Promise((resolve, reject) => {
       db.get().collection(collections.CART_COLLECTION).updateOne({ user: ObjectID(userId) }, {
         $set: {
@@ -294,9 +290,6 @@ module.exports = {
   },
   removeFromCart: (data) => {
     return new Promise((resolve, reject) => {
-      db.get().collection(collection.CART_COLLECTION).findOne({user: ObjectId(data.userId)}).then((response)=>{
-        console.log(response);
-      })
       db.get().collection(collection.CART_COLLECTION)
         .updateOne({ user: ObjectID(data.userId) },
           {
@@ -310,8 +303,8 @@ module.exports = {
   deleteUser: (userId) => {
     return new Promise((resolve, reject) => {
       db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId)}).then((r) => {
-        db.get().collection(collection.CART_COLLECTION).deleteOne({user:ObjectId(userId)}).then((response)=>{
-          resolve(response)
+        db.get().collection(collection.CART_COLLECTION).deleteOne({user:ObjectID(userId)}).then((response)=>{
+          resolve(response.deletedCount)
         })
       })
     })
