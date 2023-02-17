@@ -104,7 +104,7 @@ router.post('/api/user/remove-from-cart', (req, res) => {
 })
 
 router.post('/api/user/delete',(req,res,next)=>{
-    userHelpers.deleteUser(req.body).then((response)=>{
+    userHelpers.deleteUser(req.body.userId).then((response)=>{
         res.status(200).json(response)
     })
 })
