@@ -50,13 +50,17 @@ router.get("/api/user/cart", async (req, res, next) => {
         userHelpers.getCartProducts(req.query.userId).then((products) => {
             res.status(200).json([products, cartTotal])
         })
-    } else {
-        userHelpers.getCartProducts(req.session.user._id).then((products) => {
-            res.render("user/cart", { user: req.session.user, products, cart });
-        })
     }
 
 });
+
+router.get("/api/user/cart/total", async (req, res, next) => {
+    if (req.query.userId) {
+        let cartTotal = await userHelpers.getTotal(req.query.userId)
+        res.status(200).json(cartTotal)
+    }
+});
+
 
 router.get('/api/user/add-to-cart', (req, res, next) => {
     if (req.query.productId && req.query.userId) {
@@ -66,6 +70,32 @@ router.get('/api/user/add-to-cart', (req, res, next) => {
         })
     }
 })
+
+router.post('/api/user/checkout',async(req,res)=>{
+    let products = await userHelpers.getCartProducts(req.body.userId)
+    let total = await userHelpers.getTotal(req.body.userId)
+    userHelpers.checkout(req.body,products,total).then((response)=>{
+      res.status(200).json({status:true})
+    })
+})
+
+router.get('/api/user/orders',(req,res)=>{
+    userHelpers.viewOrders(req.query.userId).then((orders)=>{
+      orders.forEach(order => {
+        order.date = order.date.toString()
+        order.time = order.date.slice(16,24)
+        order.day = order.date.toString().slice(4,15)
+        order.date = order.date.slice(0,15)
+      })
+      res.status(200).json(orders)
+    })
+  })
+
+router.get('/api/user/order/products',(req,res)=>{
+    userHelpers.viewOrderProducts(req.query.orderId).then((products)=>{
+      res.status(200).json(products)
+    })
+  })
 
 
 module.exports = router;
