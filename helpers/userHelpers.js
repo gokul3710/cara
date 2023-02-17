@@ -3,6 +3,7 @@ var collection = require("../config/collections");
 const bcrypt = require("bcrypt");
 const { response } = require("express");
 const collections = require("../config/collections");
+const { ObjectId } = require("mongodb");
 const ObjectID = require('mongodb').ObjectID
 
 module.exports = {
@@ -291,4 +292,49 @@ module.exports = {
       resolve(orderItems)
     })
   },
+  removeFromCart: (data) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.CART_COLLECTION).findOne({user: ObjectId(data.userId)}).then((response)=>{
+        console.log(response);
+      })
+      db.get().collection(collection.CART_COLLECTION)
+        .updateOne({ user: ObjectID(data.userId) },
+          {
+            $pull: { products: { item: ObjectID(data.productId) } }
+          }
+        ).then((response) => {
+          resolve({ removeProduct: true });
+        })
+    })
+  },
+  deleteUser: (userId) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId)}).then((r) => {
+        db.get().collection(collection.CART_COLLECTION).deleteOne({user:ObjectId(userId)}).then((response)=>{
+          resolve(response)
+        })
+      })
+    })
+  },
+  editUser: (user) => {
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectID(user.userId) }, {
+        $set: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+          address: {
+            houseName: user.houseName,
+            city: user.city,
+            state: user.state,
+            pincode: user.pincode,
+            country: user.country
+          }
+        }
+      }).then((response) => {
+        resolve()
+      })
+    })
+  }
 };

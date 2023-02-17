@@ -71,31 +71,52 @@ router.get('/api/user/add-to-cart', (req, res, next) => {
     }
 })
 
-router.post('/api/user/checkout',async(req,res)=>{
+router.post('/api/user/checkout', async (req, res) => {
     let products = await userHelpers.getCartProducts(req.body.userId)
     let total = await userHelpers.getTotal(req.body.userId)
-    userHelpers.checkout(req.body,products,total).then((response)=>{
-      res.status(200).json({status:true})
+    userHelpers.checkout(req.body, products, total).then((response) => {
+        res.status(200).json({ status: true })
     })
 })
 
-router.get('/api/user/orders',(req,res)=>{
-    userHelpers.viewOrders(req.query.userId).then((orders)=>{
-      orders.forEach(order => {
-        order.date = order.date.toString()
-        order.time = order.date.slice(16,24)
-        order.day = order.date.toString().slice(4,15)
-        order.date = order.date.slice(0,15)
-      })
-      res.status(200).json(orders)
+router.get('/api/user/orders', (req, res) => {
+    userHelpers.viewOrders(req.query.userId).then((orders) => {
+        orders.forEach(order => {
+            order.date = order.date.toString()
+            order.time = order.date.slice(16, 24)
+            order.day = order.date.toString().slice(4, 15)
+            order.date = order.date.slice(0, 15)
+        })
+        res.status(200).json(orders)
     })
-  })
+})
 
-router.get('/api/user/order/products',(req,res)=>{
-    userHelpers.viewOrderProducts(req.query.orderId).then((products)=>{
-      res.status(200).json(products)
+router.get('/api/user/order/products', (req, res) => {
+    userHelpers.viewOrderProducts(req.query.orderId).then((products) => {
+        res.status(200).json(products)
     })
-  })
+})
+
+router.post('/api/user/remove-from-cart', (req, res) => {
+    userHelpers.removeFromCart(req.body).then((response) => {
+        res.status(200).json(response)
+    })
+})
+
+router.post('/api/user/delete',(req,res,next)=>{
+    userHelpers.deleteUser(req.body).then((response)=>{
+        res.status(200).json(response)
+    })
+})
+
+router.post('/api/user/edit',(req,res,next)=>{
+    userHelpers.editUser(req.body).then((response)=>{
+        res.status(200).json(response)
+    })
+})
+
+
+
 
 
 module.exports = router;
