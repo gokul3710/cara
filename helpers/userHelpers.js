@@ -61,10 +61,11 @@ module.exports = {
           phone: user.phone,
           profileImage: true,
           address: {
-            houseName: user.address,
-            city: user.city,
-            state: user.state,
-            pincode: user.pincode
+            houseName: user.address.houseName,
+            city: user.address.city,
+            state: user.address.state,
+            pincode: user.address.pincode,
+            country : user.address.country
           }
         }
       }).then((response) => {
@@ -309,7 +310,7 @@ module.exports = {
       })
     })
   },
-  editUser: (user) => {
+  editUserApi: (user) => {
     return new Promise((resolve, reject) => {
       db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectID(user.userId) }, {
         $set: {
@@ -318,11 +319,11 @@ module.exports = {
           email: user.email,
           phone: user.phone,
           address: {
-            houseName: user.houseName,
-            city: user.city,
-            state: user.state,
-            pincode: user.pincode,
-            country: user.country
+            houseName: user.address.houseName,
+            city: user.address.city,
+            state: user.address.state,
+            pincode: user.address.pincode,
+            country : user.address.country
           }
         }
       }).then((response) => {
@@ -330,4 +331,5 @@ module.exports = {
       })
     })
   }
+  
 };

@@ -105,7 +105,7 @@ router.post('/api/user/delete',(req,res,next)=>{
 })
 
 router.post('/api/user/edit',(req,res,next)=>{
-    userHelpers.editUser(req.body).then((response)=>{
+    userHelpers.editUserApi(req.body).then((response)=>{
         res.status(200).json(response)
     })
 })
