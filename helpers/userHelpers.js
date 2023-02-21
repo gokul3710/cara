@@ -193,7 +193,6 @@ module.exports = {
         },
         {
           $project: {
-            _id: null,
             item: 1,
             quantity: 1,
             product: { $arrayElemAt: ['$product', 0] }
@@ -201,6 +200,7 @@ module.exports = {
         },
         {
           $group: {
+            _id: null,
             totalPrice: { $sum: { $multiply: ['$quantity', { $convert: { input: '$product.cPrice', to: 'int' } }] } },
             totalQuantity: { $sum: { $multiply: ['$quantity', 1] } },
           }
