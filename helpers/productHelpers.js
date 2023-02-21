@@ -53,7 +53,7 @@ module.exports= {
                     dWidth:product.dWidth
                 }
             }).then((response)=>{
-                resolve()
+                resolve(product.productId)
             })
         })
     },

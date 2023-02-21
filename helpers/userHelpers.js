@@ -65,7 +65,7 @@ module.exports = {
             city: user.address.city,
             state: user.address.state,
             pincode: user.address.pincode,
-            country : user.address.country
+            country: user.address.country
           }
         }
       }).then((response) => {
@@ -200,7 +200,6 @@ module.exports = {
         },
         {
           $group: {
-            _id: null,
             totalPrice: { $sum: { $multiply: ['$quantity', { $convert: { input: '$product.cPrice', to: 'int' } }] } },
             totalQuantity: { $sum: { $multiply: ['$quantity', 1] } },
           }
@@ -303,8 +302,8 @@ module.exports = {
   },
   deleteUser: (userId) => {
     return new Promise((resolve, reject) => {
-      db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId)}).then((r) => {
-        db.get().collection(collection.CART_COLLECTION).deleteOne({user:ObjectID(userId)}).then((response)=>{
+      db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId) }).then((r) => {
+        db.get().collection(collection.CART_COLLECTION).deleteOne({ user: ObjectID(userId) }).then((response) => {
           resolve(response.deletedCount)
         })
       })
@@ -323,13 +322,25 @@ module.exports = {
             city: user.address.city,
             state: user.address.state,
             pincode: user.address.pincode,
-            country : user.address.country
+            country: user.address.country
           }
         }
       }).then((response) => {
         resolve()
       })
     })
-  }
-  
+  },
+  changeProductQuantity: (details) => {
+    count = +details.count;
+    return new Promise((resolve, reject) => {
+      db.get().collection(collection.CART_COLLECTION)
+      .updateOne({ _id: ObjectID(details.cart), 'products.item': ObjectID(details.product) },
+          {
+            $inc: { 'products.$.quantity': count }
+          }
+        ).then((response) => {
+          resolve(response);
+        })
+    })
+  },
 };
