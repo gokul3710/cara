@@ -47,7 +47,6 @@ router.get("/api/user/cart", async (req, res, next) => {
             res.status(200).json([products, cartTotal])
         })
     }
-
 });
 
 router.get("/api/user/cart/total", async (req, res, next) => {
@@ -106,6 +105,12 @@ router.post('/api/user/delete',(req,res,next)=>{
 
 router.post('/api/user/edit',(req,res,next)=>{
     userHelpers.editUserApi(req.body).then((response)=>{
+        res.status(200).json(response)
+    })
+})
+
+router.post('/api/user/cart/change-quantity',(req,res,next)=>{
+    userHelpers.changeProductQuantity(req.body).then((response)=>{
         res.status(200).json(response)
     })
 })

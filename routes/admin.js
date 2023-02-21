@@ -97,8 +97,20 @@ router.get('/edit-product',adminLogin,(req,res,next)=>{
 })
 
 router.post('/edit-product',(req,res,next)=>{
-  productHelpers.editProduct(req.body).then((response)=>{
-    res.redirect('/products')
+  productHelpers.editProduct(req.body).then((id)=>{
+    let image = req.files.image
+    image.mv('./public/product-images/'+id+'.png',(err,done)=>{
+      if(!err){
+      console.log("-------------------------");
+
+        res.redirect('/products')
+      }else{
+        console.log(err.error);
+      }
+    })
+    console.log("========================");
+
+    // res.redirect('/products')
   })
 })
 

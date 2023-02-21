@@ -1,7 +1,7 @@
 <section class="add-product">
     <div class="container add-product-container">
         <h2>Edit Product</h2>
-        <form class="add-product-form" id="submit-form" action="/add-product" method="post"
+        <form class="add-product-form" id="submit-form" action="/edit-product" method="post"
             enctype="multipart/form-data">
             <div class="form-name">
                 <input type="text" name="name" placeholder="Name" required value="{{product.name}}">
@@ -21,7 +21,8 @@
                 <input type="text" name="productId" placeholder="Address" value="{{product._id}}" required hidden >
             </div>
 
-            
+            <img src="./product-images/{{product._id}}.png" style="width: 100px;height:auto;" alt="" id="imgView">
+            <input type="file" name="image" class="form-control" onchange="viewimage(event)">
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
