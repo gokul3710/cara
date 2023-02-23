@@ -28,6 +28,7 @@ module.exports= {
     },
     searchProduct: (text)=>{
         return new Promise(async(resolve,reject)=>{
+            console.log(text);
           let results = db.get().collection(collections.PRODUCT_COLLECTION).find({$text: {$search : text}}).toArray()
           resolve(results)
         })

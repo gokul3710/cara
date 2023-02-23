@@ -23,4 +23,14 @@ router.get("/api/product", (req, res, next) => {
     }
 });
 
+router.post('/api/products/search',(req,res,next)=>{
+    if(req.body.searchKey) {
+        console.log(req.body);
+        productHelpers.searchProduct(req.body.searchKey).then((products)=>{
+            console.log(products);
+            res.status(200).json(products)
+        })
+    }
+})
+
 module.exports = router;
