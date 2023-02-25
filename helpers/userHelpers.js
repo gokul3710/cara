@@ -318,6 +318,7 @@ module.exports = {
           lastName: user.lastName,
           email: user.email,
           phone: user.phone,
+          profileImage: user.profileImage,
           address: {
             houseName: user.houseName,
             city: user.city,
