@@ -97,20 +97,28 @@ router.post('/api/user/remove-from-cart', (req, res) => {
     })
 })
 
-router.post('/api/user/delete',(req,res,next)=>{
-    userHelpers.deleteUser(req.body.userId).then((response)=>{
+router.post('/api/user/delete', (req, res, next) => {
+    userHelpers.deleteUser(req.body.userId).then((response) => {
         res.status(200).json(response)
     })
 })
 
-router.post('/api/user/edit',(req,res,next)=>{
-    userHelpers.editUserApi(req.body).then((response)=>{
-        res.status(200).json(response)
+router.post('/api/user/edit', (req, res, next) => {
+    userHelpers.editUserApi(req.body).then((response) => {
+        let image = req.files.image
+        image.mv('./public/images/user-images/' + req.body.userId + '.png', (err, done) => {
+            if (!err) {
+                res.status(200).json(response) 
+            } else {
+                console.log(err);
+                res.status(400).json("Error Uploading Image")
+            }
+        })
     })
 })
 
-router.post('/api/user/cart/change-quantity',(req,res,next)=>{
-    userHelpers.changeProductQuantity(req.body).then((response)=>{
+router.post('/api/user/cart/change-quantity', (req, res, next) => {
+    userHelpers.changeProductQuantity(req.body).then((response) => {
         res.status(200).json(response)
     })
 })

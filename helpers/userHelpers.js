@@ -319,11 +319,11 @@ module.exports = {
           email: user.email,
           phone: user.phone,
           address: {
-            houseName: user.address.houseName,
-            city: user.address.city,
-            state: user.address.state,
-            pincode: user.address.pincode,
-            country: user.address.country
+            houseName: user.houseName,
+            city: user.city,
+            state: user.state,
+            pincode: user.pincode,
+            country: user.country
           }
         }
       }).then((response) => {
