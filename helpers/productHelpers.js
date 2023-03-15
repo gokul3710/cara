@@ -3,7 +3,9 @@ var collection = require("../config/collections");
 const bcrypt = require("bcrypt");
 const collections = require("../config/collections");
 const { response } = require("express");
+const userHelpers = require("./userHelpers");
 const  ObjectID  = require('mongodb').ObjectId
+
 
 module.exports= {
     addProduct: (product)=>{
@@ -34,9 +36,13 @@ module.exports= {
         })
       },
     deleteProduct:(productId)=>{
-        return new Promise((resolve,reject) =>{
+        return new Promise(async(resolve,reject) =>{
+            let users = await db.get().collection(collection.USER_COLLECTION).find().toArray()
             db.get().collection(collection.PRODUCT_COLLECTION).deleteOne({_id:ObjectID(productId)}).then((response)=>{
-                resolve(response)
+                for(user of users){
+                    userHelpers.removeFromCart({userId: user._id,productId: productId})
+                }
+                resolve()
             })
         }) 
     },

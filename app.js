@@ -1,20 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors')
 
-var userRouter = require('./routes/user');
-var adminRouter = require('./routes/admin');
-var productApiRouter = require('./api/product');
-var userApiRouter = require('./api/user');
-var hbs = require('express-handlebars')
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
+const productApiRouter = require('./api/product');
+const userApiRouter = require('./api/user');
+const hbs = require('express-handlebars')
 
-var app = express();
-var db = require('./config/connection')
-var session= require('express-session')
-var fileUpload = require('express-fileupload')
+const app = express();
+const db = require('./config/connection')
+const session= require('express-session')
+const fileUpload = require('express-fileupload')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,4 +61,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(3000,()=>{
+  console.log("Server is listening on 3000");
+})
