@@ -32,8 +32,13 @@ app.use((req,res,next)=>{
 })
 app.use(fileUpload())
 app.use(cors({
-  origin: ['http://localhost:4200', 'https://cara-odz2.onrender.com','https://cara-angular.netlify.app','https://carashop.shop']
-}))
+  origin: ['http://localhost:4200', 'https://cara-odz2.onrender.com', 'https://cara-angular.netlify.app', 'https://carashop.shop'],
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 204
+}));
 
 db.connect((err)=>{
   if(err) console.log("Connection Error");
