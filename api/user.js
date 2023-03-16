@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var userHelpers = require("../helpers/userHelpers");
-const productHelpers = require("../helpers/productHelpers");
 const jwt = require('jsonwebtoken');
 const secret = 'your-secret-key';
 
@@ -11,7 +10,6 @@ function generateToken(user) {
     userId: user._id,
     username: user.firstName+ " " + user.lastName   
   };
-  console.log(payload);
 
 
   const options = {
@@ -26,13 +24,11 @@ const authorize = (req, res, next) => {
   const authHeader = req.headers.authorization;
   
   if (!authHeader) {
-    console.log("Authorization header not found");
     return res.status(401).send("Authorization header not found");
   }
 
   const token = authHeader.split(" ")[1];
   if (!token) {
-    console.log("Token not found");
     return res.status(401).send("Token not found");
   }
 
@@ -41,7 +37,6 @@ const authorize = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    console.log("Invalid token");
     res.status(401).send("Invalid token");
   }
 };
@@ -50,7 +45,6 @@ const authorize = (req, res, next) => {
 /* API. */
 
 router.get('/api/user', authorize,(req, res, next) => {
-    console.log(req.headers);
     if (req.query.userId) {
         userHelpers.getUser(req.query.userId).then((user) => {
             res.status(200).json(user)
@@ -59,7 +53,6 @@ router.get('/api/user', authorize,(req, res, next) => {
 })
 
 router.post("/api/user/login", function (req, res, next) {
-    console.log(req);
     userHelpers.doLogin(req.body).then((response) => {
         if (response.status) {
             const token = generateToken(response.user)
@@ -153,7 +146,6 @@ router.post('/api/user/edit',authorize, (req, res, next) => {
             if (!err) {
                 res.status(200).json(response) 
             } else {
-                console.log(err);
                 res.status(400).json("Error Uploading Image")
             }
         })
