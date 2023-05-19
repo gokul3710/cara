@@ -58,6 +58,7 @@ router.post('/add-product',(req,res,next)=>{
   console.log(req)
   productHelpers.addProduct(req.body).then((id)=>{
     let image = req.files.image
+    
     image.mv('./public/product-images/'+id+'.png',(err,done)=>{
       if(!err){
         res.redirect('/add-product')

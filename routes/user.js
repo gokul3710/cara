@@ -107,7 +107,7 @@ router.get("/product", userLogin, function (req, res, next) {
     productHelpers.getProduct(req.query.productId).then((product)=>{
       productHelpers.getCategoryProducts(product.company).then((products)=>{
         console.log(products);
-        res.render("user/product",{product,products})
+        res.json({product,products})
       })
     })
   }else{

@@ -20,8 +20,8 @@
                 <input type="number" name="dWidth" placeholder="Dial Width" step=".01" required>
             </div>
 
-            <img src="" style="width: 100px;height:auto;" alt="" id="imgView">
-            <input type="file" name="image" class="form-control" onchange="viewimage(event)">
+            <img src="" style="width: 300px;height:auto;" alt="" id="imgView">
+            <input type="file" id="image" name="image" class="form-control" onchange="viewimage(event)">
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -29,7 +29,22 @@
 </section>
 
 <script>
-    function viewimage(event){
+    function viewimage(event) {
         document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+        document.getElementById('imgView').src = URL.createObjectURL(Cropper.crop(event))
     }
+    const image = document.getElementById('image');
+    const cropper = new Cropper(image, {
+        aspectRatio: 16 / 9,
+        crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+        },
+    });
+
 </script>

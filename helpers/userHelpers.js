@@ -75,7 +75,7 @@ module.exports = {
   },
   searchUser: (text) => {
     return new Promise(async (resolve, reject) => {
-      let results = await db.get().collection(collections.USER_COLLECTION).find({ $text: { $search: text } }).toArray()
+      let results = await db.get().collection(collection.USER_COLLECTION).find({ $text: { $search: text } }).toArray()
       resolve(results)
     })
   },
@@ -301,15 +301,15 @@ module.exports = {
         })
     })
   },
-  deleteUser: (userId) => {
-    return new Promise((resolve, reject) => {
-      db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId) }).then((r) => {
-        db.get().collection(collection.CART_COLLECTION).deleteOne({ user: ObjectID(userId) }).then((response) => {
-          resolve(response.deletedCount)
-        })
-      })
-    })
-  },
+  // deleteUser: (userId) => {
+  //   return new Promise((resolve, reject) => {
+  //     db.get().collection(collection.USER_COLLECTION).deleteOne({ _id: ObjectID(userId) }).then((r) => {
+  //       db.get().collection(collection.CART_COLLECTION).deleteOne({ user: ObjectID(userId) }).then((response) => {
+  //         resolve(response.deletedCount)
+  //       })
+  //     })
+  //   })
+  // },
   editUserApi: (user) => {
     return new Promise((resolve, reject) => {
       db.get().collection(collection.USER_COLLECTION).updateOne({ _id: ObjectID(user.userId) }, {
